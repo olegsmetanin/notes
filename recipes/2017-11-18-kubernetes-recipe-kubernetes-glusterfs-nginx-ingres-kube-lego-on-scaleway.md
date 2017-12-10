@@ -55,7 +55,7 @@ git checkout -b tags/v2.3.0
 
 Create ansible inventory file (replace Public IP and Private IP for all nodes)
 
-```
+```yaml
 cat <<EOF > inventory/inventory.cfg
 # Change ansible_ssh_host to your Public IP, ip to Private IP
 master01 ansible_ssh_host=X.X.X.X ip=A.A.A.A
@@ -137,6 +137,9 @@ $ git clone https://github.com/gluster/gluster-kubernetes.git
 $ cd gluster-kubernetes
 # git checkout -b 1879ab87b8ddddea1815f1f2759242c5fcc321af
 $ cd deploy
+```
+
+```yaml
 cat <<EOF > topology.json
 {
   "clusters": [
@@ -198,7 +201,7 @@ EOF
 ```
 
 
-```
+```yaml
 # You can use namespace with -n
 ./gk-deploy -gvy
 ...
@@ -245,7 +248,7 @@ curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/wi
 ```
 
 Deploy Service (change your Private IP)
-```
+```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: Service
@@ -297,7 +300,7 @@ default backend - 404
 ## 6. Deploy Letsencrypt certificate provider
 Deploy kube-lego (do not forget to change lego.email)
 
-```
+```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: Namespace
@@ -419,6 +422,9 @@ Type: A
 Name: echo.example.com (your domain name)
 Value: X.X.X.X (Public IP of Ingress controller)
 Deploy exampleapp (replace app.example.com with your domain name)
+```
+
+```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: Namespace

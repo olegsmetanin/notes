@@ -238,6 +238,6 @@ $ curl YOUR_CLUSTER_PUBLIC_IP:30000
 
 ```
 
-That’s all, do not forget to change default Nexus passwords and disable anonymous access!
+That’s all, do not forget to change default Nexus password and disable anonymous access!
 
 Happy private dockerizing!
