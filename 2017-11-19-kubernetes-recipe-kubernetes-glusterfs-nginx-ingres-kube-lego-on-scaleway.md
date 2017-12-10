@@ -7,11 +7,11 @@ Contents:
 1. [Create servers on ScaleWay](#1-create-servers-on-scaleway)
 2. [Install ansible on management host (local computer)](#2-install-ansible-on-management-host-local-computer)
 3. [Install Kubernetes cluster](#3-install-kubernetes-cluster)
-4. [Install GlusterFS](#4)
-5. [Deploy Ingress controller](#5)
-6. [Deploy Letsencrypt certificate provider](#6)
-7. [Deploy example application](#7)
-8. [Deploy Heapster](#8)
+4. [Install GlusterFS](#4-install-glusterfs-on-all-nodes)
+5. [Deploy Ingress controller](#5-deploy-ingress-controller)
+6. [Deploy Letsencrypt certificate provider](#6-deploy-letsencrypt-certificate-provider)
+7. [Deploy example application](#7-deploy-example-application)
+8. [Deploy Heapster](#8-deploy-heapster)
 
 ## 1. Create servers on ScaleWay
 Create three servers on ScaleWay (Ubuntu Xenial, 16.04 latest) with 4Gb Memory (minimum) and additional /dev/vdb volume.
