@@ -150,6 +150,8 @@ EOF
 
 After the deployment is done, we should create docker repository in Nexus 3 interface. Login to Nexus with admin/admin123, go to “Server administration and configuration”, “Repositories”, “Create repository”, “docker (hosted)” and publish docker hosted http service on 5000 port.
 
+![Nexus docker repository config](2017-11-04-kubernetes-recipe-sonatype-nexus-3-as-private-docker-registry/nexus_interface.png)
+
 Your private docker registry is ready to work at docker.YOURDOMAIN.com.
 Let’s test it. Push hello-world container to registry (on your computer).
 
