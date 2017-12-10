@@ -13,7 +13,7 @@ Small, but functional, it cannot do deep packet inspections (DPI), but has capab
 After MikroTik hEX RB750Gr3 starts it gets a public IP from WAN and does NAT for internal network 192.168.88.0/24. The web-admin interface called “WebFig” is available at http://192.168.88.1. After logging in to web-admin, you definitely should change admin password. So, it is not hard to install a/the device/devices.
 Ok, set the router as a DNS server in DHCP Server properties: go to IP/DHCP Server menu, Network tab, open a/the default record. Input 192.168.88.1 in DNS Servers field.
 
-[!Mikrotik DHCP](2017-11-21-mikrotik-adblock/mikrotik_dhcp.png)
+![Mikrotik DHCP](2017-11-21-mikrotik-adblock/mikrotik_dhcp.png)
 
 Now download adblock script for Mikrotik from https://www.micu.eu/adblock/adblock.php and look at it till the end.
 
@@ -28,7 +28,7 @@ add address=127.0.0.1 name=s0.2mdn.net
 
 Looks good, upload it to the device using Files menu.
 
-[!Mikrotik Files](2017-11-21-mikrotik-adblock/mikrotik_files.png)
+![Mikrotik Files](2017-11-21-mikrotik-adblock/mikrotik_files.png)
 
 Add this script to import previously uploaded script, then run it.
 
@@ -38,13 +38,13 @@ Add this script to import previously uploaded script, then run it.
 :log info “Adblock: apply finished”
 ```
 
-[!Mikrotik Schedule](2017-11-21-mikrotik-adblock/mikrotik_schedule.png)
+![Mikrotik Schedule](2017-11-21-mikrotik-adblock/mikrotik_schedule.png)
 
 Use the System/Scheduler menu to add a scheduler to run import script on device start .
 
 Periodically do a manual adblock script update.
 Now I see a lot of displeased smiles and smile.
 
-[!YouTube Adblocked](2017-11-21-mikrotik-adblock/youtube_adblocked.png)
+![YouTube Adblocked](2017-11-21-mikrotik-adblock/youtube_adblocked.png)
 
 That’s all! Happy surfing!
