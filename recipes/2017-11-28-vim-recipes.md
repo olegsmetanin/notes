@@ -188,11 +188,12 @@ call plug#end()
 ## Setup file explorer
 I use NERDTree as a file explorer, prefer place it on the right side and open on demand by C-n.
 
-C-n : toggle NERDTree
+- C-n : toggle NERDTree
 
 In NERDTree split:
 
-m : file options, d for deleting file or folder for example.
+- m : file options, d for deleting file or folder for example.
+
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -213,9 +214,8 @@ let g:NERDTreeQuitOnOpen = "1"
 
 CtrlP is the most popular plugin for file/buffer/tag inscremental search. I prefer to open search in mixed mode by default.
 
-C-p : open CtrlP
-
-C-i : open tag search
+- C-p : open CtrlP
+- C-i : open tag search
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -248,7 +248,7 @@ brew install fzf
 
 After installing fzf plugin you can use <leader>e for searching.
 
-<leader>e : fuzzy search with fzf
+- <leader>e : fuzzy search with fzf
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -302,11 +302,9 @@ Do not forget install language plugins.
 
 ## Setup code completion
 
-Tab : complete
-
-Shift-j : move up in completion list
-
-Shift-k : move down in completion list
+- Tab : complete
+- Shift-j : move up in completion list
+- Shift-k : move down in completion list
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -327,7 +325,7 @@ inoremap <expr> <S-k> ("\<C-p>")
 
 ## Save file on C-s
 
-C-s : save file
+- C-s : save file
 
 ```
 " Save file with C-s
@@ -337,7 +335,7 @@ nnoremap <silent><C-s> :w<CR>
 ## Set current directory to current file
 I set working directory to the current file with ,cd sequence.
 
-,cd : Set current directory to current file
+- ,cd : Set current directory to current file
 
 ```
 " Set current directory to current file with ,cd
@@ -348,7 +346,7 @@ nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 Actually you can do it with CrtlP, but sometimes it can be comfortably with vim-dirvish.
 
-- : Open parent directory
+- \- : Open parent directory
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -392,7 +390,7 @@ nnoremap <leader>9 :9b<CR>
 ## Jump within screen
 You can navigate within screen by pressing ancor keys using vim-easymotion plugin. I bind motion to beginning of word to <Space> and use it as one of primary command for movements.
 
-<Space> : easy motion to any word
+- <Space> : easy motion to any word
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -408,15 +406,11 @@ map <Space> <Plug>(easymotion-bd-w)
 ## Jump between splits
 With vim-tmux-navigator plugin you can:
 
-C — h : go to left split
-
-C — j : go to down split
-
-C — k : go to up split
-
-C — l: go to right split
-
-C — /: go to previous split
+- C — h : go to left split
+- C — j : go to down split
+- C — k : go to up split
+- C — l: go to right split
+- C — /: go to previous split
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -430,7 +424,7 @@ call plug#end()
 ## Commenting
 For commenting I bind slash (/) to NERDCommenterToggle command from nerdcommenter plugin. In visual mode (v) you can select one or multiple lines and press slash to toggle comments.
 
-/ : toggle comment in visual mode
+- / : toggle comment in visual mode
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -447,9 +441,8 @@ vmap <silent>/ <Plug>NERDCommenterToggle
 
 I have it found useful to use vim-expand-region plugin for incremental selection.
 
-+ : expand the visual selection with vim-expand-region
-
-_ : shrink the visual selection with vim-expand-region
+- \+ : expand the visual selection with vim-expand-region
+- \_ : shrink the visual selection with vim-expand-region
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -463,7 +456,7 @@ call plug#end()
 ## Go to definition in new split
 Often you need to open definition in a new split.
 
-fd : go to definition in new split
+- fd : go to definition in new split
 
 ```
 " Go to definition in new split
