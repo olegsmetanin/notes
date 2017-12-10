@@ -2,7 +2,7 @@
 
 With [Sonatype Nexus 3](http://www.sonatype.org/nexus/) we can easily get private docker registry for Kubernetes cluster, npm and maven registry for applications. This recipe shows how to deploy docker private registry on its own domain name. At the end Nexus will be available at nexus.YOURDOMAIN.com and docker registry at docker.YOURDOMAIN.com.
 
-We assume that our Kubernetes cluster has Ingress-controller (using [nginx-ingress](https://github.com/kubernetes/ingress-nginx) for example) with TLS support (Let’s Encrypt client service using [kube-lego](https://github.com/jetstack/kube-lego) for example)
+We assume that our Kubernetes cluster has Ingress-controller (using [nginx-ingress](https://github.com/kubernetes/ingress-nginx) for example) with certification authority support (Let’s Encrypt client service using [kube-lego](https://github.com/jetstack/kube-lego) for example)
 
 Note: the recipe on how to install such cluster from scratch with nginx-based Ingress, kube-lego-based Let’s Encrypt client and Persistent Volume provider using Heketi/GlusterFS can be found [here](https://github.com/olegsmetanin/recipes/blob/master/recipes/2017-11-18-kubernetes-recipe-kubernetes-glusterfs-nginx-ingres-kube-lego-on-scaleway.md).
 
@@ -148,7 +148,7 @@ spec:
 EOF
 ```
 
-After the deployment is done, we should create docker repository in Nexus 3 interface. Login to Nexus with admin/admin123, go to “Server administration and configuration”, “Repositories”, “Create repository”, “docker (hosted)” and publish docker hosted http service on 5000 port.
+After the deployment is done and Nexus 3 interface is available at nexus.YOURDOMAIN.com, we should create docker repository. Login to Nexus with admin/admin123, go to “Server administration and configuration”, “Repositories”, “Create repository”, “docker (hosted)” and publish docker hosted http service on 5000 port.
 
 ![Nexus docker repository config](2017-11-04-kubernetes-recipe-sonatype-nexus-3-as-private-docker-registry/nexus_interface.png)
 
