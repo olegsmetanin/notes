@@ -16,8 +16,8 @@ Contents:
 - [Setup code completion](#setup-code-completion)
 - [Save file on C-s]()
 - [Set current directory to current file](#set-current-directory-to-current-file)
-- Show current directory file list
-- Show code indentations
+- [Show current directory file list](#show-current-directory-file-list)
+- [Show code indentations]()
 - [Switch between buffers](#switch-between-buffers)
 - [Jump within screen](#jump-within-screen)
 - [Jump between splits](#jump-between-splits)
@@ -345,6 +345,7 @@ call plug#begin('~/.devvim/plugged')
 Plug 'justinmk/vim-dirvish'
 ...
 call plug#end()
+```
 
 ## Show code indentations
 
