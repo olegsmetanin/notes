@@ -4,14 +4,14 @@ This guide will help you to get 3-node (master + 2 nodes) Kubernetes cluster on 
 
 Contents:
 
-- 1. Create servers on ScaleWay
-- 2. Install ansible on management host (local computer)
-- 3. Install Kubernetes cluster
-- 4. Install GlusterFS
-- 5. Deploy Ingress controller
-- 6. Deploy Letsencrypt certificate provider
-- 7. Deploy example application
-- 8. Deploy Heapster
+1. [Create servers on ScaleWay](#1-create-servers-on-scaleway)
+2. [Install ansible on management host (local computer)](#2-install-ansible-on-management-host-local-computer)
+3. [Install Kubernetes cluster](#3-install-kubernetes-cluster)
+4. [Install GlusterFS](#4)
+5. [Deploy Ingress controller](#5)
+6. [Deploy Letsencrypt certificate provider](#6)
+7. [Deploy example application](#7)
+8. [Deploy Heapster](#8)
 
 ## 1. Create servers on ScaleWay
 Create three servers on ScaleWay (Ubuntu Xenial, 16.04 latest) with 4Gb Memory (minimum) and additional /dev/vdb volume.
@@ -92,7 +92,8 @@ kubectl get --all-namespaces all
 exit
 ```
 
-4. Install GlusterFS on all nodes
+## 4. Install GlusterFS on all nodes
+
 On management host (local computer) run commands for all nodes using ansible ad-hoc commands:
 
 ```
@@ -222,7 +223,7 @@ parameters:
 EOF
 ```
 
-5. Deploy Ingress controller
+## 5. Deploy Ingress controller
 Run mandatory commands (from https://github.com/kubernetes/ingress-nginx/blob/master/deploy/README.md#mandatory-commands)
 
 ```
@@ -291,8 +292,12 @@ Check default-http-backend
 ```
 curl X.X.X.X
 default backend - 404
-6. Deploy Letsencrypt certificate provider
+```
+
+## 6. Deploy Letsencrypt certificate provider
 Deploy kube-lego (do not forget to change lego.email)
+
+```
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: Namespace
@@ -406,7 +411,7 @@ NAME                         READY     STATUS    RESTARTS   AGE
 kube-lego-674567867b-5wmfh   1/1       Running   0          25s
 ```
 
-7. Deploy example application
+## 7. Deploy example application
 
 ```
 Add an A record in your DNS and wait for your changes to propagate
