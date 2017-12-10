@@ -4,29 +4,29 @@ This is my list of VIM recipes. It might be interesting for beginners that have 
 
 
 Contents:
-- Install Neovim with custom alias
-- Choose color scheme
-- Install status bar
-- Install Icons
-- Setup file explorer
-- Setup incremental search of files, buffers, tags
-- Setup Git plugins
-- Setup code syntax hilighting
-- Setup code linting
-- Setup code completion
-- Save file on C-s
-- Set current directory to current file
+- [Install Neovim with custom alias](#install-neovim-with-custom-alias)
+- [Choose color scheme](#choose-color-scheme)
+- [Install status bar](#install-status-bar)
+- [Install Icons](#install-icons)
+- [Setup file explorer](#setup-file-explorer)
+- [Setup incremental search of files, buffers, tags](#setup-incremental-search-of-files-buffers-tags)
+- [Setup Git plugins](#setup-git-plugins)
+- [Setup code syntax hilighting](#setup-code-syntax-hilighting)
+- [Setup code linting]()
+- [Setup code completion](#setup-code-completion)
+- [Save file on C-s]()
+- [Set current directory to current file](#set-current-directory-to-current-file)
 - Show current directory file list
 - Show code indentations
-- Switch between buffers
-- Jump within screen
-- Jump between splits
-- Commenting
-- Expanding selection
-- Go to definition in new split
-- Golang development
-- Typescript development
-- My VIM config
+- [Switch between buffers](#switch-between-buffers)
+- [Jump within screen](#jump-within-screen)
+- [Jump between splits](#jump-between-splits)
+- [Commenting](#commenting)
+- [Expanding selection](#expanding-selection)
+- [Go to definition in new split](#go-to-definition-in-new-split)
+- [Golang development](#golang-development)
+- [Typescript development](#typescript-development)
+- [My VIM config](#my-vim-config)
 
 
 ## Install Neovim with custom alias
@@ -266,7 +266,7 @@ Plug 'junegunn/gv.vim'
 call plug#end()
 ```
 
-### Setup code syntax hilighting
+## Setup code syntax hilighting
 
 ```
 call plug#begin('~/.devvim/plugged')
@@ -275,8 +275,13 @@ call plug#begin('~/.devvim/plugged')
 Plug 'sheerun/vim-polyglot'
 ...
 call plug#end()
-Setup code linting
+```
+
+## Setup code linting
+
 For asynchronous code lining use ALE (Asynchronous Lint Engine).
+
+```
 call plug#begin('~/.devvim/plugged')
 ...
 " Asynchronous Code Linting
@@ -309,7 +314,11 @@ let g:deoplete#enable_at_startup = 1
 " Select from completion list with SHIFT-j/k
 inoremap <expr> <S-j> ("\<C-n>")
 inoremap <expr> <S-k> ("\<C-p>")
-Save file on C-s
+```
+
+## Save file on C-s
+
+```
 C-s : save file
 " Save file with C-s
 nnoremap <silent><C-s> :w<CR>
@@ -322,16 +331,24 @@ I set working directory to the current file with ,cd sequence.
 ```
 " Set current directory to current file with ,cd
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
-Show current directory file list
+```
+
+## Show current directory file list
+
 Actually you can do it with CrtlP, but sometimes it can be comfortably with vim-dirvish.
 - : Open parent directory
+
+```
 call plug#begin('~/.devvim/plugged')
 ...
 " Dirvish: directory navigation
 Plug 'justinmk/vim-dirvish'
 ...
 call plug#end()
-Show code indentations
+
+## Show code indentations
+
+```
 call plug#begin('~/.devvim/plugged')
 ...
 " Indent line
