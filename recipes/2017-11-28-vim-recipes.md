@@ -12,12 +12,12 @@ Contents:
 - [Setup incremental search of files, buffers, tags](#setup-incremental-search-of-files-buffers-tags)
 - [Setup Git plugins](#setup-git-plugins)
 - [Setup code syntax hilighting](#setup-code-syntax-hilighting)
-- [Setup code linting]()
+- [Setup code linting](#setup-code-linting)
 - [Setup code completion](#setup-code-completion)
-- [Save file on C-s]()
+- [Save file on C-s](#save-file-on-c-s)
 - [Set current directory to current file](#set-current-directory-to-current-file)
 - [Show current directory file list](#show-current-directory-file-list)
-- [Show code indentations]()
+- [Show code indentations](#show-code-indentations)
 - [Switch between buffers](#switch-between-buffers)
 - [Jump within screen](#jump-within-screen)
 - [Jump between splits](#jump-between-splits)
@@ -187,8 +187,11 @@ call plug#end()
 
 ## Setup file explorer
 I use NERDTree as a file explorer, prefer place it on the right side and open on demand by C-n.
+
 C-n : toggle NERDTree
+
 In NERDTree split:
+
 m : file options, d for deleting file or folder for example.
 
 ```
@@ -209,7 +212,9 @@ let g:NERDTreeQuitOnOpen = "1"
 ## Setup incremental search of files, buffers, tags
 
 CtrlP is the most popular plugin for file/buffer/tag inscremental search. I prefer to open search in mixed mode by default.
+
 C-p : open CtrlP
+
 C-i : open tag search
 
 ```
@@ -242,6 +247,7 @@ brew install fzf
 ```
 
 After installing fzf plugin you can use <leader>e for searching.
+
 <leader>e : fuzzy search with fzf
 
 ```
@@ -295,8 +301,11 @@ let g:airline#extensions#ale#enabled = 1
 Do not forget install language plugins.
 
 ## Setup code completion
+
 Tab : complete
+
 Shift-j : move up in completion list
+
 Shift-k : move down in completion list
 
 ```
@@ -318,14 +327,16 @@ inoremap <expr> <S-k> ("\<C-p>")
 
 ## Save file on C-s
 
-```
 C-s : save file
+
+```
 " Save file with C-s
 nnoremap <silent><C-s> :w<CR>
 ```
 
 ## Set current directory to current file
 I set working directory to the current file with ,cd sequence.
+
 ,cd : Set current directory to current file
 
 ```
@@ -336,6 +347,7 @@ nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 ## Show current directory file list
 
 Actually you can do it with CrtlP, but sometimes it can be comfortably with vim-dirvish.
+
 - : Open parent directory
 
 ```
@@ -379,6 +391,7 @@ nnoremap <leader>9 :9b<CR>
 
 ## Jump within screen
 You can navigate within screen by pressing ancor keys using vim-easymotion plugin. I bind motion to beginning of word to <Space> and use it as one of primary command for movements.
+
 <Space> : easy motion to any word
 
 ```
@@ -394,10 +407,15 @@ map <Space> <Plug>(easymotion-bd-w)
 
 ## Jump between splits
 With vim-tmux-navigator plugin you can:
+
 C — h : go to left split
+
 C — j : go to down split
+
 C — k : go to up split
+
 C — l: go to right split
+
 C — /: go to previous split
 
 ```
@@ -411,6 +429,7 @@ call plug#end()
 
 ## Commenting
 For commenting I bind slash (/) to NERDCommenterToggle command from nerdcommenter plugin. In visual mode (v) you can select one or multiple lines and press slash to toggle comments.
+
 / : toggle comment in visual mode
 
 ```
@@ -427,7 +446,9 @@ vmap <silent>/ <Plug>NERDCommenterToggle
 ## Expanding selection
 
 I have it found useful to use vim-expand-region plugin for incremental selection.
+
 + : expand the visual selection with vim-expand-region
+
 _ : shrink the visual selection with vim-expand-region
 
 ```
@@ -441,6 +462,7 @@ call plug#end()
 
 ## Go to definition in new split
 Often you need to open definition in a new split.
+
 fd : go to definition in new split
 
 ```
