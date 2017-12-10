@@ -8,9 +8,12 @@ Note: the recipe on how to install such cluster from scratch with nginx-based In
 
 In real cluster we will use some Persistent Volume provider like Heketi/GluserFS for persistence. In our case we will create toy PersistentVolume mounted to the host node’s filesystem directory with command:
 
-```
+```bash
 $ mkdir /tmp/volume-local
 $ chmod -R 777 /tmp/volume-local
+```
+
+```yaml
 $ cat <<EOF | kubectl create -f -
 kind: PersistentVolume
 apiVersion: v1
@@ -31,11 +34,15 @@ EOF
 
 Сheсking if creation is successful:
 
-```
+```bash
 $ kubectl get pv
 NAME           CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM             STORAGECLASS   REASON    AGE
 volume-local   10Gi       RWO            Retain           Bound     nexus/nexus-pvc                            28m
+```
+
 Now we are ready to deploy Nexus 3. The config below creates namespace, deployment, service and ingress for Nexus 3. Do not forget to change YOURDOMAIN.com to your domain name.
+
+```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: Namespace
@@ -146,7 +153,7 @@ After the deployment is done, we should create docker repository in Nexus 3 inte
 Your private docker registry is ready to work at docker.YOURDOMAIN.com.
 Let’s test it. Push hello-world container to registry (on your computer).
 
-```
+```bash
 $ docker login docker.YOURDOMAIN.com
 User: admin
 Password: admin123
@@ -163,7 +170,7 @@ latest: digest: sha256:8d9d4a28486005a6aaf1e3a16abe68b4bd82dcfe2b8602b00bee37440
 
 Now test how Kubernetes pull images from our private docker registry. Create namespace for hello-world application.
 
-```
+```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: Namespace
@@ -176,7 +183,7 @@ kubectl create secret docker-registry regsecret --docker-server=docker.YOURDOMAI
 
 Deploy hello-world application and export it with NodePort. Do not forget to change YOURDOMAIN.com.
 
-```
+```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -216,7 +223,7 @@ EOF
 
 Look at pod status.
 
-```
+```bash
 $ kubectl get pods -n hello-world -o wide
 NAME                           READY     STATUS    RESTARTS   AGE       IP              NODE
 hello-world-6f9b9bd576-b7jk6   1/1       Running   0          14s       10.233.65.102   node01
@@ -224,7 +231,7 @@ hello-world-6f9b9bd576-b7jk6   1/1       Running   0          14s       10.233.6
 
 Test it.
 
-```
+```bash
 $ curl YOUR_CLUSTER_PUBLIC_IP:30000
 
 ```
