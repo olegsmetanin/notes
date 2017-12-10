@@ -1,4 +1,6 @@
-# Kubernetes recipe: Kubernetes (kubespray) + GlusterFS (gluster-kubernetes) + Letsencrypt (kube-lego) + Nginx Ingress (nginx-ingress) on ScaleWay 2017–11–18
+# **Kubernetes recipe**: Kubernetes (kubespray) + GlusterFS (gluster-kubernetes) + Letsencrypt (kube-lego) + Nginx Ingress (nginx-ingress) on ScaleWay 2017–11–18
+
+Tags: **Kubernetes**, **Kubespary**, **GlusterFS**, **Letsencypt**, **Nginx**, **Ingress**, **ScaleWay**
 
 This guide will help you to get 3-node (master + 2 nodes) Kubernetes cluster on ScaleWay. We use Kubespray for Kubernetes installation and install GlusterFS Native Storage Service with dynamic provisioning using gluster-kubernetes. gluster-kubernetes demands that there must be at least three nodes with additional volume attached. In this tutorial we assume that each node has additional /dev/vdb volume.
 

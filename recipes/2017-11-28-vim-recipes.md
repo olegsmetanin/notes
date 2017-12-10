@@ -1,4 +1,6 @@
-# VIM recipes
+# **VIM recipes**
+
+Tags: **Vim*
 
 This is my list of VIM recipes. It might be interesting for beginners that have basic knowledge about VIM and familiar with VIM cheat sheet. There are a lot of VIM plugins can be found at https://vimawesome.com and you can easily get lost in this universe, but I strongly recommends to precisely look at top 20 of them. My minimalistic config can be found at the end of this note.
 

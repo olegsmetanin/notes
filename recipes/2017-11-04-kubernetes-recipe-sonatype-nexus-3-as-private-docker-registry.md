@@ -1,4 +1,6 @@
-# Kubernetes recipe: Sonatype Nexus 3 as a private docker registry
+# **Kubernetes recipe**: Sonatype Nexus 3 as a private docker registry
+
+Tags: **Kubernetes**, **Sonatype** ,**Nexus**
 
 With [Sonatype Nexus 3](http://www.sonatype.org/nexus/) we can easily get private docker registry for Kubernetes cluster, npm and maven registry for applications. This recipe shows how to deploy docker private registry on its own domain name. At the end Nexus will be available at nexus.YOURDOMAIN.com and docker registry at docker.YOURDOMAIN.com.
 

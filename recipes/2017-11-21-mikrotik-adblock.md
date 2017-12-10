@@ -1,4 +1,6 @@
-# Once again about Mikrotik Adblock
+# Once again about Mikrotik **Adblock**
+
+Tags: **Mikrotik**, **Adblock**
 
 Periodical glitches of my home WI-FI all-in-one router finally put me in front of two decisions:
 - use a separate reliable router

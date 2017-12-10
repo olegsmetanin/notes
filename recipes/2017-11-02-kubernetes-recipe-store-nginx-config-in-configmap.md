@@ -1,6 +1,6 @@
-# Kubernetes recipe: store nginx config with ConfigMap and reverse-proxy requests from your domain to your Github page
+# **Kubernetes recipe**: store nginx config with ConfigMap and reverse-proxy requests from your domain to your Github page
 
-Tags: Kubernetes, Nginx, Ingress, ConfigMap
+Tags: **Kubernetes**, **Nginx**, **Ingress**, **ConfigMap**
 
 As we know, we can publish GitHub pages on a custom domain. However, in this case, we are unable to have https. Another approach is to get nginx reverse-proxy that will proxy a request from your domain to YOUR-GITHUB-USERNAME.github.io.
 
