@@ -1,13 +1,11 @@
 # Kubernetes recipe: Sonatype Nexus 3 as a private docker registry
 
-With Sonatype Nexus 3 we can easily get private docker registry for Kubernetes cluster, npm and maven registry for your applications. This recipe shows how to deploy docker private registry on its own domain name. At the end Nexus will be available at nexus.YOURDOMAIN.com and docker registry at docker.YOURDOMAIN.com.
+With [Sonatype Nexus 3](http://www.sonatype.org/nexus/) we can easily get private docker registry for Kubernetes cluster, npm and maven registry for applications. This recipe shows how to deploy docker private registry on its own domain name. At the end Nexus will be available at nexus.YOURDOMAIN.com and docker registry at docker.YOURDOMAIN.com.
 
-We assume that our Kubernetes cluster has:
-- Ingress-controller (using nginx-ingress for example).
-- Let’s Encrypt client service (using kube-lego for example)
+We assume that our Kubernetes cluster has Ingress-controller (using [nginx-ingress](https://github.com/kubernetes/ingress-nginx) for example) with TLS support (Let’s Encrypt client service using [kube-lego](https://github.com/jetstack/kube-lego) for example)
 
 <aside class="notice">
-Note: the recipe on how to install such cluster from scratch with nginx-based Ingress, kube-lego-based Let’s Encrypt client and Persistent Volume provider using Heketi/GlusterFS can be found here.
+Note: the recipe on how to install such cluster from scratch with nginx-based Ingress, kube-lego-based Let’s Encrypt client and Persistent Volume provider using Heketi/GlusterFS can be found [here](https://github.com/olegsmetanin/recipes/blob/master/recipes/2017-11-18-kubernetes-recipe-kubernetes-glusterfs-nginx-ingres-kube-lego-on-scaleway.md).
 </aside>
 
 In real cluster we will use some Persistent Volume provider like Heketi/GluserFS for persistence. In our case we will create toy PersistentVolume mounted to the host node’s filesystem directory with command:
@@ -233,4 +231,6 @@ $ curl YOUR_CLUSTER_PUBLIC_IP:30000
 
 ```
 
-That’s all! Happy private dockerizing and do not forget to change default passwords of Nexus!
+That’s all, do not forget to change default Nexus passwords and disable anonymous access!
+
+Happy private dockerizing!
