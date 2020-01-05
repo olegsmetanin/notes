@@ -1,7 +1,11 @@
-# Techrecipes: Kubernetes, Microservices, Frontend, Backend, etc.
+# Oleg's notes: Kubernetes, Microservices, Frontend, Backend, etc.
+
+
+2020-01-06: [2020-01-06 Proxy your custom domain to github page with Ingress in Kubernetes](notes/2020-01-06_proxy_github_page_thru_kebernetes/index.md)
+
+2020-01-05: [2020-01-06 Install Kubernetes with cert-manager, nginx-ingress, nfs-server-provisioner, helm in CentOS 8](notes/2020-01-05_install_kubernetes_in_centos_8/index.md)
 
 2017-11-28: [**VIM recipes**](recipes/2017-11-28-vim-recipes.md)
-
 
 2017-11-21: [Once again about Mikrotik **Adblock**](recipes/2017-11-21-mikrotik-adblock.md)
 
