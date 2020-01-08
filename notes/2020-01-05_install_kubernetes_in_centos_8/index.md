@@ -1,4 +1,4 @@
-# 2020-01-06 Install Kubernetes with cert-manager, nginx-ingress, nfs-server-provisioner, helm in CentOS 8
+# 2020-01-05 Install Kubernetes with cert-manager, nginx-ingress, nfs-server-provisioner, helm in CentOS 8
 
 ## Install Docker
 
