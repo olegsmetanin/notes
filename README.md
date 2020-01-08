@@ -5,7 +5,7 @@
 
 2020-01-05: [2020-01-05 Install Kubernetes with cert-manager, nginx-ingress, nfs-server-provisioner, helm in CentOS 8](notes/2020-01-05_install_kubernetes_in_centos_8/index.md)
 
-2020-01: [2010-01 links: AWS, Kubernetes, Rust, gRPC](notes/2020-01_links/index.md)
+2020-01: [2010-01 links: AWS, Kubernetes, Rust, gRPC](notes/2020-01-01_links/index.md)
 
 2017-11-28: [**VIM recipes**](recipes/2017-11-28-vim-recipes.md)
 

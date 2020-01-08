@@ -15,3 +15,4 @@
 
 [Helm: Support reading values from STDIN for `upgrade` command](https://github.com/helm/helm/issues/7002)
 
+[Hosting: Cheap VPS for development on Contabo](https://contabo.com/?show=configurator&vserver_id=221)
