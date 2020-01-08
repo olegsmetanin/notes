@@ -3,6 +3,9 @@
 [AWS: Latency test](https://ping.psa.fun/)
 ![AWS Latency test screen](aws_latency_test.png)
 
+[AWS: Optimizing Amazon S3 Performance](https://docs.aws.amazon.com/AmazonS3/latest/dev/optimizing-performance.html)
+> For example, your application can achieve at least 3,500 PUT/COPY/POST/DELETE and 5,500 GET/HEAD requests per second per prefix in a bucket. There are no limits to the number of prefixes in a bucket. You can increase your read or write performance by parallelizing reads. For example, if you create 10 prefixes in an Amazon S3 bucket to parallelize reads, you could scale your read performance to 55,000 read requests per second.
+
 [Rust: Tonic: gRPC + async/await!](https://luciofran.co/tonic-grpc-has-come-to-async-await/)
 
 [Rust: Monorepo with AWS serverless apps](https://github.com/softprops/serverless-aws-rust-multi)
