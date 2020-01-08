@@ -3,7 +3,9 @@
 [AWS: Latency test](https://ping.psa.fun/)
 ![AWS Latency test screen](aws_latency_test.png)
 
-[RUST: Tonic: gRPC + async/await!](https://luciofran.co/tonic-grpc-has-come-to-async-await/)
+[Rust: Tonic: gRPC + async/await!](https://luciofran.co/tonic-grpc-has-come-to-async-await/)
+
+[Rust: Monorepo with AWS serverless apps](https://github.com/softprops/serverless-aws-rust-multi)
 
 [Kubernetes: clusters for the hobbyist](https://github.com/hobby-kube/guide)
 
