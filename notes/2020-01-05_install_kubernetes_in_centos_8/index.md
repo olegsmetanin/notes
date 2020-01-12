@@ -496,6 +496,8 @@ deployment.apps/nwtool created
 
 $ kubectl create namespace wordpress
 
+// Do not forget to replace YOUR.DOMAIN.COM
+
 $ helm install wordpress stable/wordpress --namespace wordpress \
   --set persistence.accessMode=ReadWriteMany \
   --set persistence.storageClass=nfs \
@@ -506,10 +508,10 @@ $ helm install wordpress stable/wordpress --namespace wordpress \
   --set ingress.annotations."kubernetes\.io\/ingress\.class"="nginx" \
   --set ingress.annotations."cert-manager\.io\/cluster-issuer"="letsencrypt-prod" \
   --set ingress.tls[0].secretName=wordpress2.local-tls \
-  --set ingress.tls[0].hosts[0]=three.staging.smetan.in \
-  --set ingress.hosts[0].name=three.staging.smetan.in
+  --set ingress.tls[0].hosts[0]=YOUR.DOMAIN.COM \
+  --set ingress.hosts[0].name=YOUR.DOMAIN.COM
 
-open https://one.staging.smetan.in
+open https://YOUR.DOMAIN.COM
 
 ```
 
