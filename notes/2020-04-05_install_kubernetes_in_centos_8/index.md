@@ -519,3 +519,11 @@ $ helm install wordpress bitnami/wordpress --namespace wordpress \
 open https://YOUR.DOMAIN.COM
 
 ```
+
+Links:
+
+Opening Ports with firewalld https://rancher.com/docs/rancher/v2.x/en/installation/options/firewall/
+
+Firewalld rules for k8s https://www.linuxtechi.com/install-kubernetes-1-7-centos7-rhel7/
+
+Switch Between Multiple Kubernetes Clusters With Ease https://nikgrozev.com/2019/10/03/switch-between-multiple-kubernetes-clusters-with-ease/
