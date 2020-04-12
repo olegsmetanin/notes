@@ -143,7 +143,7 @@ $ sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 ## Install Kubernetes CLI
 
 ```
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+$ cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
@@ -153,7 +153,7 @@ repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOF
 
-yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+$ dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 ```
 
 ## Install Kubernetes
@@ -169,7 +169,7 @@ net.ipv4.ip_forward = 1
 EOF
 
 $ systemctl daemon-reload
-$ åsystemctl restart kubelet
+$ systemctl restart kubelet
 
 $ swapoff -a
 // Remove swap entry from /etc/fstab if you have
@@ -249,15 +249,17 @@ Then you can join any number of worker nodes by running the following on each as
 kubeadm join X.X.X.X:6443 --token uonssz.djo6m41c1vaaz72n \
     --discovery-token-ca-cert-hash sha256:199bc8f264f3227b17565ab2363bd749b548cf9f2d18aa7bc53bebc81b9dtu1c
 
-// !!! Do it if you have one-node kubernetes installation
-$ kubectl taint nodes --all node-role.kubernetes.io/master-
-
-
 $ mkdir -p $HOME/.kube
 $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+// !!! Do it if you have one-node kubernetes installation
+$ kubectl taint nodes --all node-role.kubernetes.io/master-
+
+node/xxx.server.com untainted
+
 $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
 podsecuritypolicy.policy/psp.flannel.unprivileged created
 clusterrole.rbac.authorization.k8s.io/flannel created
 clusterrolebinding.rbac.authorization.k8s.io/flannel created
@@ -277,13 +279,18 @@ $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master
 ## Install cluster config on remote (admin) computer
 
 ```
-local$ scp root@X.X.X.X:/etc/kubernetes/admin.conf ${HOME}/.kube/YOUR_CLUSTER_NAME/config.yml
+local$ mkdir ${HOME}/.kube/custom-contexts/YOUR_CLUSTER_NAME
+
+local$ scp root@X.X.X.X:/etc/kubernetes/admin.conf ${HOME}/.kube/custom-contexts/YOUR_CLUSTER_NAME/config.yml
 ```
 
 Configure your local kubectl according this manual https://nikgrozev.com/2019/10/03/switch-between-multiple-kubernetes-clusters-with-ease/ 
 
 
 ```
+local$ kubectl config get-contexts
+CURRENT   NAME                           CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin
 
 local$ kubectl get pods --all-namespaces
 NAMESPACE     NAME                                            READY   STATUS    RESTARTS   AGE
@@ -413,9 +420,8 @@ If TLS is enabled for the Ingress, a Secret containing the certificate and key m
 
 ## Install cert-manager
 
-```
-$ kubectl apply --validate=false\
-    -f kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.14.1/cert-manager.crds.yaml
+```    
+$ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.14.1/cert-manager.crds.yaml
 
 
 $ kubectl create namespace cert-manager
@@ -461,7 +467,7 @@ EOF
 
 ```
 // install nfs utils on all nodes
-server$ yum install nfs-utils
+server$ dnf install nfs-utils
 
 $ cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -491,6 +497,7 @@ $ helm install nfs-server-provisioner stable/nfs-server-provisioner \
 
 ```
 $ kubectl run --generator=run-pod/v1 nwtool --image praqma/network-multitool
+
 deployment.apps/nwtool created
 
 ```
