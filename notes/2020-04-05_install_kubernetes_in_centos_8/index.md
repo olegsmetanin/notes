@@ -279,7 +279,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master
 ## Install cluster config on remote (admin) computer
 
 ```
-local$ mkdir ${HOME}/.kube/custom-contexts/YOUR_CLUSTER_NAME
+local$ mkdir -p ${HOME}/.kube/custom-contexts/YOUR_CLUSTER_NAME
 
 local$ scp root@X.X.X.X:/etc/kubernetes/admin.conf ${HOME}/.kube/custom-contexts/YOUR_CLUSTER_NAME/config.yml
 ```
@@ -526,6 +526,103 @@ $ helm install wordpress bitnami/wordpress --namespace wordpress \
 open https://YOUR.DOMAIN.COM
 
 ```
+
+## Deploy docker registry
+
+```
+$ kubectl create namespace docker-registry
+
+// user: admin, password: <<registry_password>>
+$ htpasswdstr=$(docker run --entrypoint htpasswd registry:2 -Bbn admin <<registry_password>>)
+$ domain="yourdomain.com"
+$ secretName="yourdomain-com"
+
+$ helm install docker-registry --namespace docker-registry \
+    --set persistence.enabled=true \
+    --set persistence.storageClass=nfs \
+    --set persistence.size=20Gi \
+    --set secrets.htpasswd="${htpasswdstr}" \
+    --set ingress.enabled=true \
+    --set ingress.annotations."kubernetes\.io/ingress\.class"=nginx \
+    --set ingress.annotations."nginx\.ingress\.kubernetes\.io/proxy-body-size"=1G \
+    --set ingress.annotations."cert-manager\.io\/cluster-issuer"="letsencrypt-prod" \
+    --set ingress.hosts[0]="docker-registry.${domain}" \
+    --set ingress.tls[0].hosts[0]=docker-registry.${domain} \
+    --set ingress.tls[0].secretName=docker-registry-${secretName} \
+    stable/docker-registry
+
+NAME: registry
+LAST DEPLOYED: Sun Apr 19 20:28:58 2020
+NAMESPACE: registry
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+1. Get the application URL by running these commands:
+  https://docker-registry.yourdomain.com/
+
+```
+
+## Upload example image to registry
+
+```
+$ docker login docker-registry.yourdomain.com
+Username: admin
+Password: <<registry_password>>
+
+WARNING! Your password will be stored unencrypted in /home/user/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+$ docker pull ealen/echo-server:latest
+$ docker tag ealen/echo-server:latest docker-registry.yourdomain.com/echo-server:latest
+$ docker push docker-registry.yourdomain.com/echo-server:latest
+
+```
+
+## Deploy example application
+
+```
+$ kubectl create namespace echo
+
+namespace/echo created
+
+$ kubectl create secret docker-registry docker-registry-secret \
+    --docker-server=docker-registry.yourdomain.com \
+    --docker-username=admin \
+    --docker-password=<<registry_password>> \
+    --docker-email=mail@yourdomain.com \
+    --namespace echo
+
+$ helm repo add ealenn https://ealenn.github.io/charts
+
+$ helm install echo --namespace echo \
+    --set image.repository=docker-registry.yourdomain.com/echo-server \
+    --set image.tag=latest \
+    --set imagePullSecrets[0].name="docker-registry-secret" \
+    --set ingress.enabled=true \
+    --set ingress.annotations."kubernetes\.io/ingress\.class"=nginx \
+    --set ingress.annotations."nginx\.ingress\.kubernetes\.io/proxy-body-size"=1m \
+    --set ingress.annotations."cert-manager\.io\/cluster-issuer"="letsencrypt-prod" \
+    --set ingress.hosts[0].host="echo.dev.${domain}" \
+    --set ingress.hosts[0].paths[0]="/" \
+    --set ingress.tls[0].hosts[0]=echo.dev.${domain} \
+    --set ingress.tls[0].secretName=echo-dev-${secretName} \
+    ealenn/echo-server
+
+NAME: echo
+LAST DEPLOYED: Sun Apr 19 23:04:09 2020
+NAMESPACE: echo
+STATUS: deployed
+REVISION: 1
+
+curl https://echo.dev.yourdomain.com/param?query=echo
+
+$ helm uninstall echo --namespace echo
+```
+
 
 Links:
 
