@@ -502,15 +502,18 @@ deployment.apps/nwtool created
 
 ```
 
-## Deploy example app
+## Deploy blog
 
 ```
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
 
 $ kubectl create namespace wordpress
 
-// Do not forget to replace YOUR.DOMAIN.COM
+// Do not forget to replace yourdomain.com
+$ domain="yourdomain.com"
+$ secretName="yourdomain-com-tls"
 
-$ helm install wordpress bitnami/wordpress --namespace wordpress \
+$ helm install blog bitnami/wordpress --namespace blog \
   --set persistence.accessMode=ReadWriteMany \
   --set persistence.storageClass=nfs \
   --set persistence.size=1Gi \
@@ -519,11 +522,11 @@ $ helm install wordpress bitnami/wordpress --namespace wordpress \
   --set ingress.enabled=true \
   --set ingress.annotations."kubernetes\.io\/ingress\.class"="nginx" \
   --set ingress.annotations."cert-manager\.io\/cluster-issuer"="letsencrypt-prod" \
-  --set ingress.tls[0].secretName=wordpress2.local-tls \
-  --set ingress.hostname=!!!YOUR.DOMAIN.COM
+  --set ingress.tls[0].secretName=blog-${secretName} \
+  --set ingress.hostname=blog.${domain}
 
 
-open https://YOUR.DOMAIN.COM
+open https://blog.yourdomain.com, use password from $(kubectl get secret --namespace blog blog-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
 
 ```
 
@@ -535,7 +538,7 @@ $ kubectl create namespace docker-registry
 // user: admin, password: <<registry_password>>
 $ htpasswdstr=$(docker run --entrypoint htpasswd registry:2 -Bbn admin <<registry_password>>)
 $ domain="yourdomain.com"
-$ secretName="yourdomain-com"
+$ secretName="yourdomain-com-tls"
 
 $ helm install docker-registry --namespace docker-registry \
     --set persistence.enabled=true \
