@@ -626,6 +626,43 @@ curl https://echo.dev.yourdomain.com/param?query=echo
 $ helm uninstall echo --namespace echo
 ```
 
+## Install Drone CI
+
+Get Client ID and Client Secret as described at https://docs.drone.io/server/provider/github/
+
+```
+$ helm repo add drone https://charts.drone.io
+$ helm repo update
+
+$ domain="yourdomain.com"
+$ github_client_id=<<github Client ID>>
+$ github_client_secret=<<github Client Secret>>
+$ github_admin_user=<<github user>>
+
+$ kubectl create namespace drone
+
+$ helm install drone --namespace drone \
+  --set server.host=drone.ci.${domain} \
+  --set server.protocol=https \
+  --set persistence.enabled=true \
+  --set persistence.storageClass=nfs \
+  --set ingress.enabled=true \
+  --set ingress.annotations."kubernetes\.io/ingress\.class"=nginx \
+  --set ingress.annotations."cert-manager\.io\/cluster-issuer"="letsencrypt-prod" \
+  --set ingress.hosts[0]="drone.ci.${domain}" \
+  --set ingress.tls[0].hosts[0]=drone.ci.${domain} \
+  --set ingress.tls[0].secretName=drone.ci.${domain}-tls \
+  --set sourceControl.provider=github \
+  --set sourceControl.github.clientID=${github_client_id} \
+  --set sourceControl.github.clientSecretValue=${github_client_secret} \
+  --set server.adminUser=${github_admin_user} \
+  --set server.env."DRONE_REGISTRATION_CLOSED"=true \
+  --set server.env."DRONE_REPOSITORY_FILTER"=${github_admin_user} \
+  stable/drone
+
+```
+
+
 
 Links:
 
