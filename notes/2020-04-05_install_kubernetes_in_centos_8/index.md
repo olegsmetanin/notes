@@ -626,6 +626,33 @@ curl https://echo.dev.yourdomain.com/param?query=echo
 $ helm uninstall echo --namespace echo
 ```
 
+
+## Deploy Sonatype Nexus
+
+```
+$ helm repo add oteemocharts https://oteemo.github.io/charts
+$ kubectl create namespace nexus
+$ domain="yourdomain.com"
+//Find the latest version of image at https://quay.io/repository/travelaudience/docker-nexus?tag=latest&tab=tags
+$ imageTag=3.22.0-02
+$ helm install nexus --namespace nexus \
+    --set nexus.imageTag=${imageTag} \
+    --set persistence.enabled=true \
+    --set persistence.storageClass=nfs \
+    --set persistence.storageSize=4Gi \
+    --set nexusBackup.persistence.enabled=false \
+    --set ingress.enabled=true \
+    --set ingress.tls.enabled=true \
+    --set nexusProxy.env.nexusDockerHost="docker-registry.ci.${domain}" \
+    --set nexusProxy.env.nexusHttpHost="nexus.ci.${domain}" \
+    --set nexusProxy.env.enforceHttps=true \
+    --set ingress.tls.secretName=nexus-${domain}-tls \
+    --set ingress.annotations."kubernetes\.io/ingress\.class"=nginx \
+    --set ingress.annotations."nginx\.ingress\.kubernetes\.io/proxy-body-size"=1G \
+    --set ingress.annotations."cert-manager\.io\/cluster-issuer"="letsencrypt-prod" \
+    oteemocharts/sonatype-nexus
+```
+
 ## Install Drone CI
 
 Get Client ID and Client Secret as described at https://docs.drone.io/server/provider/github/
@@ -661,7 +688,6 @@ $ helm install drone --namespace drone \
   stable/drone
 
 ```
-
 
 
 Links:
