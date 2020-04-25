@@ -661,7 +661,8 @@ Get Client ID and Client Secret as described at https://docs.drone.io/server/pro
 $ helm repo add drone https://charts.drone.io
 $ helm repo update
 
-$ domain="yourdomain.com"
+$ ROOT_DOMAIN="yourdomain.com"
+$ CI_DOMAIN=drone.ci.${ROOT_DOMAIN}
 $ github_client_id=<<github Client ID>>
 $ github_client_secret=<<github Client Secret>>
 $ github_admin_user=<<github user>>
@@ -669,16 +670,17 @@ $ github_admin_user=<<github user>>
 $ kubectl create namespace drone
 
 $ helm install drone --namespace drone \
-  --set server.host=drone.ci.${domain} \
+  --set server.host=${CI_DOMAIN} \
   --set server.protocol=https \
   --set persistence.enabled=true \
   --set persistence.storageClass=nfs \
+  --set persistence.size=10Gi \
   --set ingress.enabled=true \
   --set ingress.annotations."kubernetes\.io/ingress\.class"=nginx \
   --set ingress.annotations."cert-manager\.io\/cluster-issuer"="letsencrypt-prod" \
-  --set ingress.hosts[0]="drone.ci.${domain}" \
-  --set ingress.tls[0].hosts[0]=drone.ci.${domain} \
-  --set ingress.tls[0].secretName=drone.ci.${domain}-tls \
+  --set ingress.hosts[0]=${CI_DOMAIN} \
+  --set ingress.tls[0].hosts[0]=${CI_DOMAIN} \
+  --set ingress.tls[0].secretName=${CI_DOMAIN}-tls \
   --set sourceControl.provider=github \
   --set sourceControl.github.clientID=${github_client_id} \
   --set sourceControl.github.clientSecretValue=${github_client_secret} \
