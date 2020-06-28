@@ -1,5 +1,6 @@
 # Oleg's notes: Kubernetes, Microservices, Frontend, Backend, etc.
 
+2020-06-28: [2020-06-28 Contabo speed test](notes/2020-06-28_contabo_speed_test/index.md)
 
 2020-04-05: [2020-04-05 Install Kubernetes with cert-manager, nginx-ingress, nfs-server-provisioner, helm in CentOS 8](notes/2020-04-05_install_kubernetes_in_centos_8/index.md)
 

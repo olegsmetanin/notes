@@ -284,7 +284,7 @@ local$ mkdir -p ${HOME}/.kube/custom-contexts/YOUR_CLUSTER_NAME
 local$ scp root@X.X.X.X:/etc/kubernetes/admin.conf ${HOME}/.kube/custom-contexts/YOUR_CLUSTER_NAME/config.yml
 ```
 
-Configure your local kubectl according this manual https://nikgrozev.com/2019/10/03/switch-between-multiple-kubernetes-clusters-with-ease/ 
+Configure your local kubectl according this manual https://nikgrozev.com/2019/10/03/switch-between-multiple-kubernetes-clusters-with-ease/
 
 
 ```
@@ -420,7 +420,7 @@ If TLS is enabled for the Ingress, a Secret containing the certificate and key m
 
 ## Install cert-manager
 
-```    
+```
 $ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.14.1/cert-manager.crds.yaml
 
 
